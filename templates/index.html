@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuestro subidor MK</title>
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+
+
+
+
+
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+    form { display: flex; gap: .5rem; margin-bottom: 1.5rem; }
+    ul { list-style: none; padding: 0; }
+    li { display: flex; align-items: center; gap: .75rem; padding: .5rem 0; border-bottom: 1px solid #e474d1; }
+    li a { flex: 1; word-break: break-all; }
+    .tamano { color: #701e55; font-size: .85rem; }
+    .error { color: #c00; }
+    .htmx-request button[type=submit] { opacity: .5; }
+  </style>
+
+
+
+
+</head>
+<body>
+  <h1>Subir archivos</h1>
+
+  <form hx-post="/subir" hx-target="#lista" hx-encoding="multipart/form-data"
+        hx-on::after-request="if(event.detail.successful) this.reset()">
+    <input type="file" name="archivo" required>
+    <button type="submit">Subir</button>
+  </form>
+
+  <div id="lista">
+    {% include "_archivos.html" %}
+  </div>
+</body>
+</html>

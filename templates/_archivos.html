@@ -1,0 +1,12 @@
+{% if archivos %}
+  <ul>
+    {% for a in archivos %}
+      <li>
+        <a href="/subidas/{{ a.nombre }}">{{ a.nombre }}</a>
+        <span class="tamano">{{ a.tamano }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="vacio">Aún no hay archivos.</p>
+{% endif %}
